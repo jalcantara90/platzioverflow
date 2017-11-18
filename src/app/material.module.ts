@@ -3,14 +3,16 @@ import {
   MatButtonModule, 
   MatCheckboxModule, 
   MatIconModule, 
-  MatToolbarModule
+  MatToolbarModule,
+  MatCardModule
 } from '@angular/material';
 
 const modules = [
    MatButtonModule, 
    MatCheckboxModule,
    MatToolbarModule,
-   MatIconModule
+   MatIconModule,
+   MatCardModule
   ]
 
 @NgModule({
