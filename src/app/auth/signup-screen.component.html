@@ -1,28 +1,32 @@
-<form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
-     <input type="email" matInput
-     placeholder="Correo electrónico"
-     formControlName="email"
-     id="email">
-    </mat-form-field>
-    <mat-form-field>
-      <input [type]="hide ? 'password' : 'text'" matInput
-        placeholder="Contraseña"
-        formControlName="password"
-        id="password">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-    </mat-form-field>
-    <mat-form-field>
-        <input type="text" matInput
-        placeholder="Nombre usuario"
-        formControlName="firstName"
-        id="firstName">
-       </mat-form-field>
-       <mat-form-field>
-         <input type="text" matInput
-           placeholder="Apellidos usuario"
-           formControlName="lastName"
-           id="lastName">
-       </mat-form-field>
-    <button type="submit" mat-raised-button color="accent">Registrar usuario</button>
-  </form>
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input type="text" matInput
+    placeholder="Nombre"
+    formControlName="firstName"
+    id="firstName">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput
+      placeholder="Apellidos"
+      formControlName="lastName"
+      id="lastName">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="email" matInput
+    placeholder="Correo electrónico"
+    formControlName="email"
+    id="email">
+  </mat-form-field>
+  <mat-form-field>
+    <input [type]="hide ? 'password' : 'text'" matInput
+      placeholder="Contraseña"
+      formControlName="password"
+      id="password">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="accent">Registrar usuario</button>
+  <p style="text-align: center">
+    ¿ Ya tienes usuario ?
+    <a [routerLink]="['/signin']" mat-button color="primary">Inicia sesión</a>
+  </p>
+ </form>

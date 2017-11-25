@@ -6,12 +6,13 @@ import { User } from './user.model';
   selector: 'app-signup-screen',
   templateUrl: './signup-screen.component.html'
 })
-export class SignUpScreenComponent implements OnInit {
 
-  signinForm: FormGroup;
+export class SignUpScreenComponent implements OnInit {
+  signupForm: FormGroup;
   hide: boolean = true;
+
   ngOnInit() {
-    this.signinForm = new FormGroup({
+    this.signupForm = new FormGroup({
       email: new FormControl(null, [
         Validators.required,
         Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
@@ -23,11 +24,11 @@ export class SignUpScreenComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.signinForm.valid) {
-      const { email, password, firstName, lastName } = this.signinForm.value;
+    if (this.signupForm.valid) {
+      const { email, password, firstName, lastName } = this.signupForm.value;
       const user = new User(email, password, firstName, firstName);
       console.log(user);
     }
-
   }
+  
 }

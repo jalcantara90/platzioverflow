@@ -12,4 +12,8 @@
       id="password">
   </mat-form-field>
   <button type="submit" mat-raised-button color="accent">Iniciar sesión</button>
+  <p style="text-align: center">
+    ¿ Todavía no tienes usuario ?
+    <a [routerLink]="['/signup']" mat-button color="primary">Crear usuario</a>
+  </p>
 </form>
