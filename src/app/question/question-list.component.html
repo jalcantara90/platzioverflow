@@ -1,11 +1,14 @@
-<mat-list>
-    <mat-list-item *ngFor="let question of questions" [routerLink]="['/questions', question._id]">
-      <i *ngIf="question.icon === 'none'" mat-list-icon class="material-icons help">help</i>
-      <i *ngIf="question.icon !== 'none'" mat-list-icon  class="{{question.icon}}"></i>
-      <h3 mat-line>{{question.title}}</h3>
-      <p mat-line> 
-        <small>{{question.answers.length}} respuestas - {{question.createdAt}}</small>
-      </p>
-    </mat-list-item>
-  </mat-list>
-  <button [routerLink]="['/questions', 'new']" class="add-question" mat-fab color="accent">+</button>
+<mat-spinner *ngIf="loading" mode="indeterminate" color="accent"></mat-spinner>
+<div *ngIf="!loading">
+  <mat-list>
+      <mat-list-item *ngFor="let question of questions" [routerLink]="['/questions', question._id]">
+        <i *ngIf="question.icon === 'none'" mat-list-icon class="material-icons help">help</i>
+        <i *ngIf="question.icon !== 'none'" mat-list-icon  class="{{question.icon}}"></i>
+        <h3 mat-line>{{question.title}}</h3>
+        <p mat-line> 
+          <small>{{question.answers.length}} respuestas - {{question.createdAt}}</small>
+        </p>
+      </mat-list-item>
+    </mat-list>
+    <button [routerLink]="['/questions', 'new']" class="add-question" mat-fab color="accent">+</button>
+</div>

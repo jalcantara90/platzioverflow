@@ -4,11 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "concurrently -r \"npm run start:server\" \"npm run start:client\" ",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start:server": "NODE_ENV=development DEBUG=platzi-overflow* nodemon server/index.js --exec babel-node",
+    "start:client": "ng serve"
   },
   "private": true,
   "dependencies": {
@@ -24,9 +26,19 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
     "angular2-moment": "^1.7.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
     "core-js": "^2.4.1",
+    "debug": "^3.1.0",
+    "express": "^4.16.2",
     "hammerjs": "^2.0.8",
+    "jsonwebtoken": "^8.1.0",
+    "nodemon": "^1.12.1",
     "rxjs": "^5.5.2",
+    "sweet-scroll": "^2.2.1",
+    "url-join": "^2.0.2",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
