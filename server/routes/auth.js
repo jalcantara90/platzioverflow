@@ -4,19 +4,24 @@ import express from 'express'
 import Debug from 'debug'
 import jwt from 'jsonwebtoken';
 import { secret } from '../config'
-import { findUserByEmail, users } from '../middleware'
+// import { findUserByEmail, users } from '../middleware'
+import { User } from '../models'
+import {
+  hashSync as hash,
+  compareSync as comparePasswords
+} from 'bcryptjs'
 
 const app = express.Router()
 
 const debug = new Debug('platzi-overflow:auth')
 
-const comparePasswords = (providedPassword, userPassword) => {
-  return providedPassword === userPassword
-}
+// const comparePasswords = (providedPassword, userPassword) => {
+//   return providedPassword === userPassword
+// }
 
-app.post('/signin', (req, res, next) => {
+app.post('/signin', async (req, res, next) => {
   const { email, password } = req.body
-  const user = findUserByEmail(email)
+  const user = await User.findOne({ email })
 
   if (!user) {
     debug(`User with email ${email} not found`)
@@ -39,18 +44,24 @@ app.post('/signin', (req, res, next) => {
   })
 })
 
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
   const { firstName, lastName, email, password } = req.body
-  const user = {
-    _id: +new Date(),
+  // const user = {
+  //   _id: +new Date(),
+  //   firstName,
+  //   lastName,
+  //   email,
+  //   password
+  // }
+  const u = new User({
     firstName,
     lastName,
     email,
-    password
-  }
-  debug(`creating new user with email ${user.email}`)
-  users.push(user)
+    password: hash(password, 10)
+  })
+  const user = await u.save()
 
+  debug(`creating new user with email ${user.email}`)
   const token = createToken(user)
   res.status(201).json({
     message: 'User saved',
