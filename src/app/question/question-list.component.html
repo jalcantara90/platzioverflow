@@ -6,9 +6,8 @@
         <i *ngIf="question.icon !== 'none'" mat-list-icon  class="{{question.icon}}"></i>
         <h3 mat-line>{{question.title}}</h3>
         <p mat-line> 
-          <small>{{question.answers.length}} respuestas - {{question.createdAt}}</small>
+          <small>{{question.answers.length}} respuestas - {{question.createdAt | amLocale: 'es' | amTimeAgo}}</small>
         </p>
       </mat-list-item>
-    </mat-list>
-    <button [routerLink]="['/questions', 'new']" class="add-question" mat-fab color="accent"> <mat-icon>add</mat-icon></button>
+  </mat-list>
 </div>

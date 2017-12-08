@@ -4,12 +4,12 @@ import { AppComponent } from './app.component';
 import { AnswerFormComponent } from './answer/answer-form.component';
 import { SignInScreenComponent } from './auth/signin-screen.component';
 import { SignUpScreenComponent } from './auth/signup-screen.component';
-import { QuestionListComponent } from './question/question-list.component';
+import { QuestionScreenComponent } from './question/question-screen.component';
 
 import { QUESTIONS_ROUTES } from './question/question.routing';
 
 const APP_ROUTES: Routes = [
-  { path: '', component: QuestionListComponent, pathMatch:'full' },
+  { path: '', component: QuestionScreenComponent, pathMatch:'full' },
   { path: 'signin', component: SignInScreenComponent },
   { path: 'signup', component: SignUpScreenComponent },
   { path: 'questions', children: QUESTIONS_ROUTES },
